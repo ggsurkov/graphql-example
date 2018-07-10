@@ -2,9 +2,20 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {graphiqlExpress, graphqlExpress} from 'apollo-server-express';
 import schema from './schema';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
 
 const app = express();
+app.use(cors());
+
+mongoose.connect('mongodb://localhost/graphqlserver');
+
+const connection = mongoose.connection;
+
+connection.once('open', () => {
+    console.log('mongoDB database connection established successfully');
+});
 
 app.use('/graphiql', graphiqlExpress({
     endpointURL: '/graphql'
