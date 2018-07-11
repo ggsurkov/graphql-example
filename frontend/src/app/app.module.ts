@@ -27,7 +27,7 @@ import {CourseService} from "./course.service";
 export class AppModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
-      link: httpLink.create({uri: 'http://localhosr:4000/graphql'}),
+      link: httpLink.create({uri: 'http://localhost:4000/graphql'}),
       cache: new InMemoryCache()
     });
   }
